@@ -43,7 +43,7 @@ class Collection implements Iterator, Countable
         }
 
         if (is_array($items)) {
-            $items = new ArrayIterator($items);
+            //$items = new ArrayIterator($items);
         }
 
         $this->items = $items;
@@ -595,7 +595,11 @@ class Collection implements Iterator, Countable
             return $this->items->toArray();
         }
 
-        return iterator_to_array($this->items);
+        if ($this->items instanceof ArrayIterator) {
+            return $this->items->getArrayCopy();
+        }
+
+        return $this->items;
     }
 
     /**
