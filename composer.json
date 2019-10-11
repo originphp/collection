@@ -3,7 +3,10 @@
     "description": "Origin Collection",
     "type": "library",
     "keywords": [
-        "collection"
+        "originphp",
+        "arrays",
+        "collections",
+        "iterators"
     ],
     "homepage": "https://www.originphp.com",
     "license": "MIT",
@@ -31,6 +34,5 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0"
-    },
-    "minimum-stability": "dev"
+    }
 }
