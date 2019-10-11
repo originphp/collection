@@ -1,5 +1,9 @@
 # Collection
 
+![license](https://img.shields.io/badge/license-MIT-brightGreen.svg)
+[![build](https://travis-ci.org/originphp/collection.svg?branch=masterhttps://travis-ci.org/originphp/collection.svg?branch=master)](https://travis-ci.org/originphp/collection)
+[![coverage](https://coveralls.io/repos/github/originphp/collection/badge.svg?branch=master)](https://coveralls.io/github/originphp/collection?branch=master)
+
 You can create a `Collection` using arrays or an object which is an instance of [Traversable](https://www.php.net/manual/en/class.traversable.php).
 
 ## Installation
