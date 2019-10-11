@@ -595,10 +595,6 @@ class Collection implements Iterator, Countable
             return $this->items->toArray();
         }
 
-        if ($this->items instanceof ArrayIterator) {
-            return $this->items->getArrayCopy();
-        }
-
         return iterator_to_array($this->items);
     }
 
