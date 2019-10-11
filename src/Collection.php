@@ -42,10 +42,6 @@ class Collection implements Iterator, Countable
             throw new InvalidArgumentException('Only arrays or Traversable are allowed');
         }
 
-        if (is_array($items)) {
-            //$items = new ArrayIterator($items);
-        }
-
         $this->items = $items;
     }
 
