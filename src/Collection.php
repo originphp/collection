@@ -16,9 +16,9 @@ namespace Origin\Collection;
 
 use Iterator;
 use Countable;
-use InvalidArgumentException;
 use Traversable;
 use ArrayIterator;
+use InvalidArgumentException;
 
 class Collection implements Iterator, Countable
 {
@@ -38,7 +38,7 @@ class Collection implements Iterator, Countable
      */
     public function __construct($items)
     {
-        if (!is_array($items) and !($items instanceof Traversable)) {
+        if (! is_array($items) and ! ($items instanceof Traversable)) {
             throw new InvalidArgumentException('Only arrays or Traversable are allowed');
         }
 

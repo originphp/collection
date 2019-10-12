@@ -13,8 +13,6 @@
  */
 namespace Origin\Test\Collection\Lib;
 
-use Iterator;
-
 class Entity
 {
     public function __construct(array $items = [])
