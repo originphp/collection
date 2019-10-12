@@ -11,7 +11,7 @@ You can create a `Collection` using arrays or an object which is an instance of 
 To install this package
 
 ```linux
-$ composer require origin/collection
+$ composer require originphp/collection
 ```
 
 ## Creating a Collection
