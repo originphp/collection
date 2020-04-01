@@ -374,9 +374,9 @@ class Collection implements Iterator, Countable
     *   });
     *
     * @param string|callable $callback
-    * @return integer
+    * @return mixed
     */
-    public function sumOf($callback) : int
+    public function sumOf($callback)
     {
         $callback = $this->initializeCallback($callback);
         $sum = 0;
@@ -398,13 +398,13 @@ class Collection implements Iterator, Countable
     *   });
     *
     * @param string|callable $callback
-    * @return integer
+    * @return mixed
     */
-    public function avg($callback) : int
+    public function avg($callback)
     {
         $values = $this->extract($callback)->toArray();
-
-        return array_sum($values) / count($values);
+        $count = count($values);
+        return $count > 0 ? array_sum($values) / $count : null;
     }
 
     /**
@@ -418,20 +418,24 @@ class Collection implements Iterator, Countable
     *   });
     *
     * @param string|callable $callback
-    * @return integer
+    * @return mixed
     */
-    public function median($callback) : int
+    public function median($callback)
     {
         $values = $this->extract($callback)->toArray();
         $count = count($values);
-        sort($values);
-        $middle = (int) ($count / 2);
 
-        if ($count % 2) {
-            return $values[$middle];
+        if ($count) {
+            sort($values);
+            $middle = (int) ($count / 2);
+    
+            if ($count % 2) {
+                return $values[$middle];
+            }
+    
+            return ($values[$middle - 1] + $values[$middle]) / 2;
         }
-
-        return ($values[$middle - 1] + $values[$middle]) / 2;
+        return null;
     }
 
     /**

@@ -303,6 +303,15 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
             return $book->id + 100;
         }));
         $this->assertEquals(370, $collection->avg('author.id'));
+
+        // test decimals
+        $values = [['key'=>3],['key'=>2]];
+        $collection = collection($values);
+        $this->assertEquals(2.5, $collection->avg('key'));
+
+        // test
+        $collection = collection([]);
+        $this->assertNull($collection->avg('key'));
     }
 
     public function testMedian()
@@ -319,6 +328,13 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $books[] = $this->books[1];
         $collection = collection($books);
         $this->assertEquals(400, $collection->median('author.id'));
+
+        $values = [['key'=>5.2],['key'=>2.6],['key'=>3.3]];
+        $collection = collection($values);
+        $this->assertEquals(3.7000000000000006, $collection->avg('key'));
+
+        $collection = collection([]);
+        $this->assertNull($collection->avg('key'));
     }
 
     public function testCount()
