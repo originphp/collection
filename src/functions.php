@@ -19,7 +19,7 @@ use Origin\Collection\Collection;
  * @param array $items
  * @return \Origin\Collection\Collection
  */
-function collection($items) : Collection
+function collection($items): Collection
 {
     return new Collection($items);
 }
