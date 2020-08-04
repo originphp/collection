@@ -305,7 +305,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(370, $collection->avg('author.id'));
 
         // test decimals
-        $values = [['key'=>3],['key'=>2]];
+        $values = [['key' => 3],['key' => 2]];
         $collection = collection($values);
         $this->assertEquals(2.5, $collection->avg('key'));
 
@@ -329,7 +329,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $collection = collection($books);
         $this->assertEquals(400, $collection->median('author.id'));
 
-        $values = [['key'=>5.2],['key'=>2.6],['key'=>3.3]];
+        $values = [['key' => 5.2],['key' => 2.6],['key' => 3.3]];
         $collection = collection($values);
         $this->assertEquals(3.7000000000000006, $collection->avg('key'));
 

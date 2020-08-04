@@ -69,7 +69,7 @@ class Collection implements Iterator, Countable
      * @param string|callable $callback
      * @return \Origin\Collection\Collection
      */
-    public function extract($callback) : Collection
+    public function extract($callback): Collection
     {
         $callback = $this->initializeCallback($callback);
         $result = [];
@@ -91,7 +91,7 @@ class Collection implements Iterator, Countable
      * @param callable $callback
      * @return \Origin\Collection\Collection
      */
-    public function each(callable $callback) : Collection
+    public function each(callable $callback): Collection
     {
         foreach ($this->items as $key => $value) {
             $result = $callback($value, $key);
@@ -116,7 +116,7 @@ class Collection implements Iterator, Countable
      * @param callable $callback
      * @return \Origin\Collection\Collection
      */
-    public function map(callable $callback) : Collection
+    public function map(callable $callback): Collection
     {
         $items = [];
         foreach ($this->items as $key => $value) {
@@ -140,7 +140,7 @@ class Collection implements Iterator, Countable
     * @param string $valuePath
     * @return \Origin\Collection\Collection
     */
-    public function combine(string $keyPath, string $valuePath, string $groupPath = null) : Collection
+    public function combine(string $keyPath, string $valuePath, string $groupPath = null): Collection
     {
         $options = [
             'keyPath' => $keyPath,
@@ -188,7 +188,7 @@ class Collection implements Iterator, Countable
      * @param integer $chunkSize
      * @return \Origin\Collection\Collection
      */
-    public function chunk(int $chunkSize) : Collection
+    public function chunk(int $chunkSize): Collection
     {
         $chunks = [];
         $counter = 0;
@@ -216,7 +216,7 @@ class Collection implements Iterator, Countable
      * @param callable $callback
      * @return \Origin\Collection\Collection
      */
-    public function filter(callable $callback) : Collection
+    public function filter(callable $callback): Collection
     {
         $results = [];
         foreach ($this->items as $key => $value) {
@@ -238,7 +238,7 @@ class Collection implements Iterator, Countable
      * @param callable $callback
      * @return \Origin\Collection\Collection
      */
-    public function reject(callable $callback) : Collection
+    public function reject(callable $callback): Collection
     {
         $results = [];
         foreach ($this->items as $key => $value) {
@@ -261,7 +261,7 @@ class Collection implements Iterator, Countable
      * @return bool $result
 
      */
-    public function every(callable $callback) : bool
+    public function every(callable $callback): bool
     {
         foreach ($this->items as $key => $value) {
             if (! $callback($value, $key)) {
@@ -283,7 +283,7 @@ class Collection implements Iterator, Countable
      * @return bool $result
 
      */
-    public function some(callable $callback) : bool
+    public function some(callable $callback): bool
     {
         foreach ($this->items as $key => $value) {
             if ($callback($value, $key) === true) {
@@ -306,7 +306,7 @@ class Collection implements Iterator, Countable
      * @param string|callable $callback
      * @return \Origin\Collection\Collection
      */
-    public function sortBy($callback, $direction = SORT_DESC, $type = SORT_NUMERIC) : Collection
+    public function sortBy($callback, $direction = SORT_DESC, $type = SORT_NUMERIC): Collection
     {
         $callback = $this->initializeCallback($callback);
 
@@ -404,6 +404,7 @@ class Collection implements Iterator, Countable
     {
         $values = $this->extract($callback)->toArray();
         $count = count($values);
+
         return $count > 0 ? array_sum($values) / $count : null;
     }
 
@@ -435,6 +436,7 @@ class Collection implements Iterator, Countable
     
             return ($values[$middle - 1] + $values[$middle]) / 2;
         }
+
         return null;
     }
 
@@ -451,7 +453,7 @@ class Collection implements Iterator, Countable
      * @param string|callable $callback
      * @return array
      */
-    public function countBy($callback) : array
+    public function countBy($callback): array
     {
         $callback = $this->initializeCallback($callback);
         $results = [];
@@ -480,7 +482,7 @@ class Collection implements Iterator, Countable
     * @param string|callable $callback
     * @return \Origin\Collection\Collection
     */
-    public function groupBy($callback) : Collection
+    public function groupBy($callback): Collection
     {
         $callback = $this->initializeCallback($callback);
         $group = [];
@@ -501,7 +503,7 @@ class Collection implements Iterator, Countable
     * @param string|callable $callback
     * @return \Origin\Collection\Collection
     */
-    public function indexBy($callback) : Collection
+    public function indexBy($callback): Collection
     {
         $callback = $this->initializeCallback($callback);
         $group = [];
@@ -521,7 +523,7 @@ class Collection implements Iterator, Countable
      * @param mixed $values
      * @return \Origin\Collection\Collection
      */
-    public function insert(string $path, $values) : Collection
+    public function insert(string $path, $values): Collection
     {
         $items = [];
         $paths = explode('.', $path);
@@ -552,7 +554,7 @@ class Collection implements Iterator, Countable
      * @param integer $from from which offset
      * @return \Origin\Collection\Collection
      */
-    public function take(int $count, int $from = 0) : Collection
+    public function take(int $count, int $from = 0): Collection
     {
         $items = [];
         $to = $from + $count - 1;
@@ -610,7 +612,7 @@ class Collection implements Iterator, Countable
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         if (method_exists($this->items, 'toArray')) {
             return $this->items->toArray();
@@ -628,7 +630,7 @@ class Collection implements Iterator, Countable
      *
      * @return array
      */
-    public function toList() : array
+    public function toList(): array
     {
         return array_values($this->toArray());
     }
@@ -679,7 +681,7 @@ class Collection implements Iterator, Countable
  
     # Iterator
 
-    public function rewind() : void
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -694,17 +696,17 @@ class Collection implements Iterator, Countable
         return $this->items[$this->position];
     }
 
-    public function key() : int
+    public function key(): int
     {
         return $this->position;
     }
 
-    public function next() : void
+    public function next(): void
     {
         ++$this->position;
     }
 
-    public function valid() : bool
+    public function valid(): bool
     {
         return isset($this->items[$this->position]);
     }
