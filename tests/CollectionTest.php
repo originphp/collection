@@ -368,6 +368,17 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(2, count($result['odd']));
         $this->assertEquals(3, count($result['even']));
     }
+
+    public function testIndexBy()
+    {
+        $collection = collection($this->books);
+        $result = $collection->indexBy('id')->toArray();
+        $this->assertArrayHasKey(1000, $result);
+        $this->assertEquals(1000, $result[1000]->id);
+        $this->assertEquals(1001, $result[1001]->id);
+        $this->assertEquals(1002, $result[1002]->id);
+    }
+
     public function testInsert()
     {
         $users = [

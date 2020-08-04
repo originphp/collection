@@ -1,8 +1,7 @@
 <?php
-declare(strict_types = 1);
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2019 Jamiel Sharief.
+ * Copyright 2018 - 2020 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -12,6 +11,7 @@ declare(strict_types = 1);
  * @link        https://www.originphp.com
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types = 1);
 namespace Origin\Collection;
 
 use Iterator;
@@ -486,6 +486,27 @@ class Collection implements Iterator, Countable
         $group = [];
         foreach ($this->items as $value) {
             $group[$callback($value)][] = $value;
+        }
+
+        return new Collection($group);
+    }
+
+    /**
+    * Indxes the collection results when you elements have a single result with a unique value,
+    * for example, the id field.
+    *
+    * $collection->indexBy('id');
+    * $collection->indexBy('user.id');
+    *
+    * @param string|callable $callback
+    * @return \Origin\Collection\Collection
+    */
+    public function indexBy($callback) : Collection
+    {
+        $callback = $this->initializeCallback($callback);
+        $group = [];
+        foreach ($this->items as $value) {
+            $group[$callback($value)] = $value;
         }
 
         return new Collection($group);
