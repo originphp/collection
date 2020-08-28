@@ -19,8 +19,9 @@ use Countable;
 use Traversable;
 use ArrayIterator;
 use InvalidArgumentException;
+use IteratorAggregate;
 
-class Collection implements Iterator, Countable
+class Collection implements IteratorAggregate, Countable
 {
     /**
      * Holds the Items
@@ -29,8 +30,6 @@ class Collection implements Iterator, Countable
      */
     protected $items = null;
 
-    protected $position = 0;
-
     /**
      * Undocumented function
      *
@@ -38,7 +37,7 @@ class Collection implements Iterator, Countable
      */
     public function __construct($items)
     {
-        if (! is_array($items) and ! ($items instanceof Traversable)) {
+        if (! is_array($items) && ! ($items instanceof Traversable)) {
             throw new InvalidArgumentException('Only arrays or Traversable are allowed');
         }
 
@@ -679,35 +678,13 @@ class Collection implements Iterator, Countable
         return $value;
     }
  
-    # Iterator
-
-    public function rewind(): void
-    {
-        $this->position = 0;
-    }
-
     /**
-     * Gets the current item
+     * IteratorAggregate Interface
      *
-     * @return mixed
+     * @return \ArrayIterator
      */
-    public function current()
+    public function getIterator()
     {
-        return $this->items[$this->position];
-    }
-
-    public function key(): int
-    {
-        return $this->position;
-    }
-
-    public function next(): void
-    {
-        ++$this->position;
-    }
-
-    public function valid(): bool
-    {
-        return isset($this->items[$this->position]);
+        return new ArrayIterator($this->items);
     }
 }
