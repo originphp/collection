@@ -1,7 +1,7 @@
 <?php
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2019 Jamiel Sharief.
+ * Copyright 2018 - 2020 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -20,8 +20,9 @@ class ResultSet implements Iterator
     private $position = 0;
     private $array = [];
 
-    public function __construct()
+    public function __construct(array $data)
     {
+        $this->array = $data;
         $this->position = 0;
     }
 

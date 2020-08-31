@@ -626,13 +626,16 @@ class Collection implements IteratorAggregate, Countable
      */
     public function toArray(): array
     {
-        if (method_exists($this->items, 'toArray')) {
-            return $this->items->toArray();
+        if (is_object($this->items)) {
+            if (method_exists($this->items, 'toArray')) {
+                return $this->items->toArray();
+            }
+            if ($this->items instanceof ArrayIterator) {
+                return $this->items->getArrayCopy();
+            }
         }
-
-        if ($this->items instanceof ArrayIterator) {
-            return $this->items->getArrayCopy();
-        }
+      
+    
 
         return $this->items;
     }
