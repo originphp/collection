@@ -406,6 +406,13 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($first->toArray() === $second->toArray());
     }
 
+
+    public function testIsEmpty()
+    {
+        $this->assertFalse(collection($this->books)->isEmpty());
+        $this->assertTrue(collection([])->isEmpty());
+    }
+
     public function testDebugInfo()
     {
         $collection = collection($this->books);

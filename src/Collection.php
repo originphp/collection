@@ -573,6 +573,19 @@ class Collection implements IteratorAggregate, Countable
     }
 
     /**
+     * Checks if the collection is empty
+     *
+     * @return boolean
+     */
+    public function isEmpty() : bool
+    {
+        foreach ($this->items as $item) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Gets the first item in the collection
      *
      * @return array|object
