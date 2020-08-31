@@ -14,12 +14,11 @@
 declare(strict_types = 1);
 namespace Origin\Collection;
 
-use Iterator;
 use Countable;
 use Traversable;
 use ArrayIterator;
-use InvalidArgumentException;
 use IteratorAggregate;
+use InvalidArgumentException;
 
 class Collection implements IteratorAggregate, Countable
 {
@@ -577,11 +576,12 @@ class Collection implements IteratorAggregate, Countable
      *
      * @return boolean
      */
-    public function isEmpty() : bool
+    public function isEmpty(): bool
     {
         foreach ($this->items as $item) {
             return false;
         }
+
         return true;
     }
 
@@ -635,8 +635,6 @@ class Collection implements IteratorAggregate, Countable
             }
         }
       
-    
-
         return $this->items;
     }
 

@@ -406,7 +406,6 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($first->toArray() === $second->toArray());
     }
 
-
     public function testIsEmpty()
     {
         $this->assertFalse(collection($this->books)->isEmpty());
@@ -446,7 +445,6 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         //Iterator
     }
 
-    
     public function testToArray()
     {
         $collection = collection(new ResultSet($this->books));
